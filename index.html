@@ -27,17 +27,9 @@
             width: 100%;
         }
 
-        img {
-            border-radius: 6px;
-        }
-
         h5 {
             font-weight: 500;
             text-align: center;
-        }
-
-        #logo {
-            height: 30px;
         }
 
         ul {
@@ -61,6 +53,10 @@
         .content-images {
             height: auto;
             max-width: 100%;
+        }
+
+        .main-content {
+            border-radius: 6px;
         }
 
         .row {
@@ -103,7 +99,7 @@
     <!-- NAV BAR -->
     <nav class="navbar">
         <ul>
-            <li><img id="logo" src="assets/2308_gogglebox_logo.png"></li>
+            <li><img class="content-images" src="assets/2308_gogglebox_logo.png"></li>
             <li>Sign In</li>
         </ul>
     </nav>
@@ -111,8 +107,8 @@
     <!-- HERO -->
     <div class="hero">
         <picture>
-            <source class="content-images" media="(min-width:581px)" srcset="assets/2308_desktop_hero.jpg">
-            <img class="content-images" src="assets/2308_mobile_hero.jpg">
+            <source class="content-images main-content" media="(max-width:580px)" srcset="assets/2308_mobile_hero.jpg">
+            <img class="content-images main-content" src="assets/2308_desktop_hero.jpg">
         </picture>
     </div>
 
@@ -123,11 +119,11 @@
 
     <div class="now-playing row">
         <div class="col">
-            <img class="content-images" src="assets/2308_01_now_playing.jpg">
+            <img class="content-images main-content" src="assets/2308_01_now_playing.jpg">
         </div>
         <div class="col">
-            <img class="content-images" src="assets/2308_03_now_playing.jpg">
-            <img class="content-images" src="assets/2308_02_now_playing.jpg">
+            <img class="content-images main-content" src="assets/2308_03_now_playing.jpg">
+            <img class="content-images main-content" src="assets/2308_02_now_playing.jpg">
         </div>
     </div>
 
@@ -159,6 +155,8 @@
                 for(let i = 0; i < 24; i++) {
                     let img = new Image;
                     img.src = shows[i].show.image.medium;
+                    img.classList.add("main-content");
+                    img.classList.add("content-images");
                     document.getElementById("tomorrow-shows").appendChild(img);
                 }
             }});
