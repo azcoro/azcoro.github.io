@@ -52,10 +52,12 @@
             background-color: inherit;
         }
 
+        /* targets the logo */
         ul > li:first-child {
             flex-grow: 4;
         }
 
+        /* responsive class for the content images */
         .content-images {
             height: auto;
             max-width: 100%;
@@ -73,6 +75,7 @@
             justify-content: space-between;
         }
 
+        /* creates the scrolling UI */
         #tomorrow-shows {
             display: flex;
             overflow-x: scroll;
@@ -97,6 +100,7 @@
     </style>
 </head>
 <body>
+    <!-- NAV BAR -->
     <nav class="navbar">
         <ul>
             <li><img id="logo" src="assets/2308_gogglebox_logo.png"></li>
@@ -104,6 +108,7 @@
         </ul>
     </nav>
 
+    <!-- HERO -->
     <div class="hero">
         <picture>
             <source class="content-images" media="(min-width:581px)" srcset="assets/2308_desktop_hero.jpg">
@@ -111,6 +116,7 @@
         </picture>
     </div>
 
+    <!-- NOW PLAYING -->
     <div class="now-playing">
         <h3>Now Playing</h3>
     </div>
@@ -125,22 +131,30 @@
         </div>
     </div>
 
+    <!-- TOMORROW'S SCHEDULE -->
     <div class="tomorrow-schedule">
         <h3>Tomorrow's Schedule</h3>
     </div>
 
     <div class="tomorrow-schedule" id="tomorrow-shows"></div>
 
+    <!-- FOOTER -->
     <div>
         <h5>© Googlebox 2023 All Rights Reserved</h5>
     </div>
 
     <script>
+        // calls function when the document has loaded
         $(document).ready(function() {
             const date = new Date();
+
+            // sets the date to the next day
             date.setDate(date.getDate() + 1);
+
+            // formats the date in iso_8601
             tomorrow = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" +("0" + (date.getDate())).slice(-2);
 
+            // calls to tvmaze API and creates new images for each of the first 24 results
             $.ajax({url: ("https://api.tvmaze.com/schedule?date=" + tomorrow), success: function(shows){
                 for(let i = 0; i < 24; i++) {
                     let img = new Image;
