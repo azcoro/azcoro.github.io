@@ -151,7 +151,7 @@
             tomorrow = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" +("0" + (date.getDate())).slice(-2);
 
             // calls to tvmaze API and creates new images for each of the first 24 results
-            $.ajax({url: ("https://api.tvmaze.com/schedule?date=" + tomorrow), success: function(shows){
+            $.ajax({url: ("https://api.tvmaze.com/schedule?country=US&date=" + tomorrow), success: function(shows){
                 for(let i = 0; i < 24; i++) {
                     let img = new Image;
                     img.src = shows[i].show.image.medium;
