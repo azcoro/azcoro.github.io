@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Living Spaces Coding Challenge</title>
-    <script src="jquery-3.7.1.min.js"></script>
     <style>
         * {
             font-family: Arial, Helvetica, sans-serif;
@@ -13,15 +12,13 @@
             color: #ffff;
             box-sizing: border-box;
         }
-
+        
         body {
-            max-width: 1620px;
+            display: flex;
+            flex-direction: column;
         }
 
-        body > div {
-            margin: 25px 50px;
-        }
-
+        
         nav {
             background-color: #000;
             width: 100%;
@@ -31,7 +28,7 @@
             font-weight: 500;
             text-align: center;
         }
-
+        
         ul {
             padding: 0 5%;
             display: flex;
@@ -43,10 +40,19 @@
         ul > li {
             background-color: inherit;
         }
-
+        
         /* targets the logo */
         ul > li:first-child {
             flex-grow: 4;
+        }
+        
+        .main-body {
+            max-width: 1620px;
+            align-self: center;
+        }
+        
+        .main-body > div {
+            margin: 25px 50px;
         }
 
         /* responsive class for the content images */
@@ -72,11 +78,25 @@
         }
 
         /* creates the scrolling UI */
+        #tomorrow-container {
+            position: relative;
+        }
+        
         #tomorrow-shows {
             display: flex;
-            overflow-x: scroll;
             column-gap: 20px;
             padding-bottom: 50px;
+            overflow-x: scroll;
+        }
+        
+        #fade {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 295px;
+            width: 200px;
+            background: linear-gradient(to right, rgba(46, 8, 61, 0) 50%, rgba(46, 8, 61, 1));
         }
 
         @media only screen and (max-width: 580px) {
@@ -92,6 +112,10 @@
             .col {
                 row-gap: 15px;
             }
+
+            #fade {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -99,46 +123,53 @@
     <!-- NAV BAR -->
     <nav class="navbar">
         <ul>
-            <li><img class="content-images" src="assets/2308_gogglebox_logo.png"></li>
+            <li><img class="content-images" src="assets/2308_gogglebox_logo.png" alt="googlebox-logo"></li>
             <li>Sign In</li>
         </ul>
     </nav>
 
-    <!-- HERO -->
-    <div class="hero">
-        <picture>
-            <source class="content-images main-content" media="(max-width:580px)" srcset="assets/2308_mobile_hero.jpg">
-            <img class="content-images main-content" src="assets/2308_desktop_hero.jpg">
-        </picture>
-    </div>
-
-    <!-- NOW PLAYING -->
-    <div class="now-playing">
-        <h3>Now Playing</h3>
-    </div>
-
-    <div class="now-playing row">
-        <div class="col">
-            <img class="content-images main-content" src="assets/2308_01_now_playing.jpg">
+    <div class="main-body">
+        <!-- HERO -->
+        <div class="hero">
+            <picture>
+                <source class="content-images main-content" media="(max-width:580px)" srcset="assets/2308_mobile_hero.jpg" alt="hero-mobile">
+                <img class="content-images main-content" src="assets/2308_desktop_hero.jpg" alt="hero-desktop">
+            </picture>
         </div>
-        <div class="col">
-            <img class="content-images main-content" src="assets/2308_03_now_playing.jpg">
-            <img class="content-images main-content" src="assets/2308_02_now_playing.jpg">
+    
+        <!-- NOW PLAYING -->
+        <div class="now-playing">
+            <h3>Now Playing</h3>
+        </div>
+    
+        <div class="now-playing row">
+            <div class="col">
+                <img class="content-images main-content" src="assets/2308_01_now_playing.jpg" alt="Only Murders in the Building">
+            </div>
+            <div class="col">
+                <img class="content-images main-content" src="assets/2308_03_now_playing.jpg" alt="Stranger Things 4">
+                <img class="content-images main-content" src="assets/2308_02_now_playing.jpg" alt="Yellowjackets">
+            </div>
+        </div>
+    
+        <!-- TOMORROW'S SCHEDULE -->
+        <div class="tomorrow-schedule">
+            <h3>Tomorrow's Schedule</h3>
+        </div>
+    
+        <div id="tomorrow-container">
+            <div class="tomorrow-schedule" id="tomorrow-shows"></div>
+            <div id="fade"></div>
+        </div>
+    
+        <!-- FOOTER -->
+        <div>
+            <h5>© Googlebox 2023 All Rights Reserved</h5>
         </div>
     </div>
 
-    <!-- TOMORROW'S SCHEDULE -->
-    <div class="tomorrow-schedule">
-        <h3>Tomorrow's Schedule</h3>
-    </div>
 
-    <div class="tomorrow-schedule" id="tomorrow-shows"></div>
-
-    <!-- FOOTER -->
-    <div>
-        <h5>© Googlebox 2023 All Rights Reserved</h5>
-    </div>
-
+    <script src="jquery-3.7.1.min.js"></script>
     <script>
         // calls function when the document has loaded
         $(document).ready(function() {
@@ -155,6 +186,7 @@
                 for(let i = 0; i < 24; i++) {
                     let img = new Image;
                     img.src = shows[i].show.image.medium;
+                    img.alt = shows[i].show.name;
                     img.classList.add("main-content");
                     img.classList.add("content-images");
                     document.getElementById("tomorrow-shows").appendChild(img);
