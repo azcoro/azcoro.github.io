@@ -193,15 +193,23 @@
 
             // calls to tvmaze API and creates new images for each of the first 24 results
             $.ajax({url: ("https://api.tvmaze.com/schedule?country=US&date=" + tomorrow), success: function(shows){
-                for(let i = 0; i < 24; i++) {
-                    let img = new Image;
-                    img.src = shows[i].show.image.medium;
-                    img.alt = shows[i].show.name;
-                    img.classList.add("main-content");
-                    img.classList.add("content-images");
-                    img.style.height = "295px";
-                    img.style.width = "210px";
-                    document.getElementById("tomorrow-shows").appendChild(img);
+                // i is index and count is the count of shows already added to tomorrow's schedule
+                // if shows < 24, we stop the loop
+                for(let i = 0, count = 0; i < shows.length && count < 24; i++) {
+                    try {
+                        let img = new Image;
+                        img.src = shows[i].show.image.medium;
+                        img.alt = shows[i].show.name;
+                        img.classList.add("main-content");
+                        img.classList.add("content-images");
+                        img.style.height = "295px";
+                        img.style.width = "210px";
+                        document.getElementById("tomorrow-shows").appendChild(img);
+                        count++;
+                    }
+                    catch (error) {
+                        console.log("Show ", i, " was skipped due to missing data.");
+                    }
                 }
             }});
         });
