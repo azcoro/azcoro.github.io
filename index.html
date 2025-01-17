@@ -57,10 +57,8 @@
 
         /* responsive class for the content images */
         .content-images {
-            width: fit-content;
-            height: fit-content;
-            object-fit: contain;
             max-width: 100%;
+            height: auto;
         }
 
         .main-content {
@@ -89,6 +87,7 @@
             column-gap: 20px;
             padding-bottom: 50px;
             overflow-x: scroll;
+            scrollbar-width: thin;
         }
         
         #overlay {
@@ -115,10 +114,6 @@
                 row-gap: 15px;
             }
 
-            .content-images {
-                height: auto;
-            }
-
             .col {
                 row-gap: 15px;
             }
@@ -137,7 +132,7 @@
     <!-- NAV BAR -->
     <nav class="navbar">
         <ul>
-            <li><img class="content-images" src="assets/2308_gogglebox_logo.png" alt="googlebox-logo"></li>
+            <li><img class="content-images" src="assets/2308_gogglebox_logo.png" alt="googlebox-logo" width="220px" height="40px"></li>
             <li>Sign In</li>
         </ul>
     </nav>
@@ -146,8 +141,8 @@
         <!-- HERO -->
         <div class="hero">
             <picture>
-                <source class="content-images main-content" media="(max-width:580px)" srcset="assets/2308_mobile_hero.jpg" alt="hero-mobile">
-                <img class="content-images main-content" src="assets/2308_desktop_hero.jpg" alt="hero-desktop">
+                <source class="content-images main-content" media="(max-width:580px)" srcset="assets/2308_mobile_hero.jpg" alt="hero-mobile" width="580px" height="680px">
+                <img class="content-images main-content" src="assets/2308_desktop_hero.jpg" alt="hero-desktop" width="1620px" height="500px">
             </picture>
         </div>
     
@@ -158,11 +153,11 @@
     
         <div class="now-playing row">
             <div class="col">
-                <img class="content-images main-content" src="assets/2308_01_now_playing.jpg" alt="Only Murders in the Building">
+                <img class="content-images main-content" src="assets/2308_01_now_playing.jpg" alt="Only Murders in the Building" width="580px" height="800px">
             </div>
             <div class="col">
-                <img class="content-images main-content" src="assets/2308_03_now_playing.jpg" alt="Stranger Things 4">
-                <img class="content-images main-content" src="assets/2308_02_now_playing.jpg" alt="Yellowjackets">
+                <img class="content-images main-content" src="assets/2308_03_now_playing.jpg" alt="Stranger Things 4" width="1010px" height="385px">
+                <img class="content-images main-content" src="assets/2308_02_now_playing.jpg" alt="Yellowjackets" width="1010px" height="385px">
             </div>
         </div>
     
