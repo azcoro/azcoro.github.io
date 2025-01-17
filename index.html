@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Landing page for Living Spaces Challenge">
     <title>Living Spaces Coding Challenge</title>
     <style>
         * {
@@ -17,7 +18,6 @@
             display: flex;
             flex-direction: column;
         }
-
         
         nav {
             background-color: #000;
@@ -57,7 +57,9 @@
 
         /* responsive class for the content images */
         .content-images {
-            height: auto;
+            width: fit-content;
+            height: fit-content;
+            object-fit: contain;
             max-width: 100%;
         }
 
@@ -100,9 +102,12 @@
         }
 
         @media only screen and (max-width: 580px) {
+            .main-body {
+                width: 100%;
+            }
+
             .main-body > div {
-                margin-left: 15px;
-                margin-right: 15px;
+                margin: 25px 30px;
             }
 
             .row {
@@ -194,6 +199,8 @@
                     img.alt = shows[i].show.name;
                     img.classList.add("main-content");
                     img.classList.add("content-images");
+                    img.style.height = "295px";
+                    img.style.width = "210px";
                     document.getElementById("tomorrow-shows").appendChild(img);
                 }
             }});
